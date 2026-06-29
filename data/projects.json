@@ -1,0 +1,13 @@
+[
+  {
+    "id": 0,
+    "image": "/ams-dashboard.png",
+    "alt": "Dashboard",
+    "name": "RFID Attendance monitoring system with Facial Verification",
+    "type": "Capstone Project",
+    "description": "A web-based RFID attendance-monitoring system with facial verfication to avoid proxy attendance and automated attendance logging. ",
+    "includeCaseStudy": true,
+    "caseStudyUrl": "#",
+    "tech": ["Next.js", "Postgres", "Typescript", ""]
+  }
+]

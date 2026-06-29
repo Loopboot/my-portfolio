@@ -1,0 +1,204 @@
+[
+  {
+    "id": 0,
+    "hero": {
+      "project_name": "Document Management System",
+      "position": "Full-stack Developer",
+      "duration": "2026 - Present",
+      "team_size": "solo",
+      "status": "Ongoing"
+    },
+    "highlights": [
+      "Asynchronous OCR pipeline",
+      "Direct-to-object-storage uploads",
+      "Recoverable document ingestion",
+      "Cloud & on-premise deployment"
+    ],
+    "problem_description": "The client wants a scalable system with a strict security to manage thousands of scanned documents that were difficult to search and organize. They also required a development model that worked on both on-premise and in cloud environemnts",
+    "requirements": {
+      "functional": [
+        "Upload Documents",
+        "OCR text extraction",
+        "file indexing",
+        "Authentication",
+        "Role-based Access Control",
+        "Document Indexing",
+        "Semantic Search",
+        "Store Document Metadata"
+      ],
+      "non_functional": [
+        "Remain responsive under heavy document upload workloads",
+        "Deployable on-premise",
+        "Deployable on cloud",
+        "Designed for future machine learning integration",
+        "Modular and extensible architecture for future features",
+        "Responsive UI"
+      ]
+    },
+    "solution": "I designed a document ingestion pipeline where uploads are stored immediately while OCR processing runs asynchronously. Extracted text is indexed for search, and storage is abstracted behind an S3-compatible interface to support different deployment environments.",
+    "design_principle": "Because the system was originally intended for government use, reliability and security were primary concerns. I designed the document ingestion pipeline to prioritize durability over immediate processing. Documents should never be lost due to temporary failures, uploads should not block users, and recoverable errors should be handled automatically without manual intervention.",
+    "architecture": [
+      {
+        "diagram_name": "Upload Pipeline",
+        "diagram_url": "/",
+        "diagram_description": "I Designed this upload pipeline with the assumption that failures will be unavoidable, therefore it is built to be recoverable from  them."
+      }
+    ],
+    "technical_decisions": [
+      {
+        "title": "Nextjs as Frontend",
+        "challenge": "The system requires to be responsive and modern",
+        "decision": "Implemented Nextjs as a frontend, a React based framework with robust production ready ecosystem that features modern and responsive UI",
+        "outcome": ["Responsive UI", "Real-time changes"]
+      },
+      {
+        "title": "Django as Backend",
+        "challenge": "The system requires to be ready for machine learning integration",
+        "decision": "Implemented Django as backend due to being based on python with robust production ready ecosystem.  ",
+        "outcome": [
+          "Robust libraries for faster and robust development",
+          "Production ready"
+        ]
+      },
+      {
+        "title": "File indexing and Semantic search",
+        "challenge": "The system requires file indexing and semantic search",
+        "decision": "Implemented postgres as database with pgvector support and OCR text extraction",
+        "outcome": [
+          "Features search ranking",
+          "File Indexing",
+          "Natively support OCR text extraction"
+        ]
+      },
+      {
+        "title": "Object Storage",
+        "challenge": "Deploying the system between on-premise and cloud will affect the upload pipeline and will require refactoring of code.",
+        "decision": "Integrated an s3 compatible Object Storage to seamlessly deploy the system either on-premise or cloud with minimal configuration",
+        "outcome": [
+          "Minimal Configuration when deploying on-premise or as a cloud service",
+          "Faster file retrieval"
+        ]
+      },
+      {
+        "title": "Direct-to-Object-Storage Uploads",
+        "challenge": "Uploading large documents through the backend would consume API worker resources and increase response times.",
+        "decision": "Implemented direct browser uploads using pre-signed URLs so files are uploaded directly to MinIO. The backend only generates the upload URL and records metadata after the upload completes.",
+        "outcome": [
+          "Reduced backend bandwidth usage",
+          "Improved upload throughput",
+          "API remains responsive during uploads"
+        ]
+      },
+      {
+        "title": "Asynchronous Processing",
+        "challenge": "OCR and document indexing are CPU-intensive operations that can take several seconds or longer.",
+        "decision": "These tasks are executed by Celery workers after the upload has completed.",
+        "outcome": [
+          "Upload requests return immediately",
+          "Users can continue browsing the application",
+          "Long-running work doesn't block HTTP requests",
+          "Worker capacity can be scaled independently"
+        ]
+      },
+      {
+        "title": "Failure Recovery",
+        "challenge": "The system was originally intended for government use, where document loss and service interruptions are unacceptable. Network failures, worker crashes, or corrupted files should not prevent the application from continuing to operate or compromise uploaded documents.",
+        "decision": "Designed the upload pipeline around the principle that failures are inevitable. Documents are uploaded and persisted to object storage before any processing begins. Once the upload is confirmed, the backend creates a processing job for background workers. OCR, indexing, and other long-running tasks execute independently of the request lifecycle, allowing failures to be retried without affecting user-facing operations.",
+        "outcome": [
+          "Upload failures do not crash the backend",
+          "Users can continue using the application while documents are processed",
+          "Recoverable failures are handled automatically",
+          "The ingestion pipeline is resilient to temporary service interruptions"
+        ]
+      }
+    ],
+    "gallery": null,
+    "project_links": null
+  },
+  {
+    "id": 1,
+    "hero": {
+      "project_name": "Web-based RFID Attendance Monitoring system with Facial Verification",
+      "position": "Full-stack Developer",
+      "duration": "2025 - 2026",
+      "team_size": "solo",
+      "status": "Complete"
+    },
+    "highlights": [
+      "Machine Learning Integration",
+      "Serverless Hosting",
+      "Cloud & on-premise deployment"
+    ],
+    "problem_description": "The school uses biometrics as verification for attendance but still manually writing when logging attendance.",
+    "requirements": {
+      "functional": [
+        "Upload Documents",
+        "OCR text extraction",
+        "file indexing",
+        "Authentication",
+        "Role-based Access Control",
+        "Document Indexing",
+        "Semantic Search",
+        "Store Document Metadata"
+      ],
+      "non_functional": [
+        "Remain responsive under heavy document upload workloads",
+        "Deployable on-premise",
+        "Deployable on cloud",
+        "Designed for future machine learning integration",
+        "Modular and extensible architecture for future features",
+        "Responsive UI"
+      ]
+    },
+    "solution": "I built an Attendance Monitoring System that automates the logging by simply tapping the RFID and Verification through facial recognition to prevent proxy attendance and unauthorized check ins.",
+    "design_principle": "Because the system was needs to be deployed fast, secure and reliable. I use monolithic architecture and primarily use production ready frameworks with rich eco-system",
+    "architecture": [
+      {
+        "diagram_name": "Face Embedding Pipeline",
+        "diagram_url": "/",
+        "diagram_description": "The process of extracting the embedding from the face."
+      },
+      {
+        "diagram_name": "Face Verification Pipeline",
+        "diagram_url": "/",
+        "diagram_description": "The process of face detection and verification ."
+      }
+    ],
+    "technical_decisions": [
+      {
+        "title": "Direct-to-Object-Storage Uploads",
+        "challenge": "Uploading large documents through the backend would consume API worker resources and increase response times.",
+        "decision": "Implemented direct browser uploads using pre-signed URLs so files are uploaded directly to MinIO. The backend only generates the upload URL and records metadata after the upload completes.",
+        "outcome": [
+          "Reduced backend bandwidth usage",
+          "Improved upload throughput",
+          "API remains responsive during uploads"
+        ]
+      },
+      {
+        "title": "Asynchronous Processing",
+        "challenge": "OCR and document indexing are CPU-intensive operations that can take several seconds or longer.",
+        "decision": "These tasks are executed by Celery workers after the upload has completed.",
+        "outcome": [
+          "Upload requests return immediately",
+          "Users can continue browsing the application",
+          "Long-running work doesn't block HTTP requests",
+          "Worker capacity can be scaled independently"
+        ]
+      },
+      {
+        "title": "Failure Recovery",
+        "challenge": "The system was originally intended for government use, where document loss and service interruptions are unacceptable. Network failures, worker crashes, or corrupted files should not prevent the application from continuing to operate or compromise uploaded documents.",
+        "decision": "Designed the upload pipeline around the principle that failures are inevitable. Documents are uploaded and persisted to object storage before any processing begins. Once the upload is confirmed, the backend creates a processing job for background workers. OCR, indexing, and other long-running tasks execute independently of the request lifecycle, allowing failures to be retried without affecting user-facing operations.",
+        "outcome": [
+          "Upload failures do not crash the backend",
+          "Users can continue using the application while documents are processed",
+          "Recoverable failures are handled automatically",
+          "The ingestion pipeline is resilient to temporary service interruptions"
+        ]
+      }
+    ],
+    "gallery": null,
+    "project_links": null
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "position": "Internship Experience",
+    "date": "2026",
+    "client": "Private Client",
+    "description": "Collaborated with a team for the development of a unified business management platform consisting of six interconnected modules. Worked across both frontend and backend to implement features, integrate modules, and maintain compatibility across modules.",
+    "project": "Unified Management System",
+    "tech": ["Django", "Sqlite3"],
+    "caseStudy": false,
+    "caseStudyUrl": null
+  },
+  {
+    "id": 0,
+    "position": "Freelance Full-Stack Developer",
+    "date": "2026 - Present",
+    "client": "Software Solutions Company",
+    "project": "Document Management System",
+    "description": "Developed a compliance-oriented Document Management System for a client, designed for government-oriented organizations. Built a scalable architecture supporting OCR-powered semantic search, secure document workflows, role-based access control, and cloud or on-premises deployment.",
+    "tech": ["Next.js", "Django", "Docker", "PostgreSQL"],
+    "caseStudy": true,
+    "caseStudyUrl": "/blog/case-study/0"
+  }
+]

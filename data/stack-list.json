@@ -1,0 +1,58 @@
+[
+  {
+    "categoryName": "Languages",
+    "contents": [
+      {
+        "name": "Typescript",
+        "icon": "typescript"
+      },
+      {
+        "name": "Python",
+        "icon": "python"
+      }
+    ]
+  },
+  {
+    "categoryName": "Frameworks",
+    "contents": [
+      {
+        "name": "NEXTjs",
+        "icon": "nextjs"
+      },
+      {
+        "name": "Django",
+        "icon": "django"
+      },
+      {
+        "name": "React",
+        "icon": "react"
+      }
+    ]
+  },
+  {
+    "categoryName": "Databases",
+    "contents": [
+      {
+        "name": "PostgreSQL",
+        "icon": "postgres"
+      },
+      {
+        "name": "MySQL",
+        "icon": "mysql"
+      },
+      {
+        "name": "Sqlite3",
+        "icon": "sqlite3"
+      }
+    ]
+  },
+  {
+    "categoryName": "Infrastructure",
+    "contents": [
+      {
+        "name": "Docker",
+        "icon": "docker"
+      }
+    ]
+  }
+]
