@@ -82,7 +82,7 @@
       {
         "title": "Direct-to-Object-Storage Uploads",
         "challenge": "Uploading large documents through the backend would consume API worker resources and increase response times.",
-        "decision": "Implemented direct browser uploads using pre-signed URLs so files are uploaded directly to MinIO. The backend only generates the upload URL and records metadata after the upload completes.",
+        "decision": "Implemented direct browser uploads using pre-signed URLs so files are uploaded directly to Object Storage. The backend only generates the upload URL and records metadata after the upload completes.",
         "outcome": [
           "Reduced backend bandwidth usage",
           "Improved upload throughput",
@@ -132,22 +132,15 @@
     "problem_description": "The school uses biometrics as verification for attendance but still manually writing when logging attendance.",
     "requirements": {
       "functional": [
-        "Upload Documents",
-        "OCR text extraction",
-        "file indexing",
+        "Face Verification",
+        "RFID support",
         "Authentication",
-        "Role-based Access Control",
-        "Document Indexing",
-        "Semantic Search",
-        "Store Document Metadata"
+        "Role-based Access Control"
       ],
       "non_functional": [
-        "Remain responsive under heavy document upload workloads",
-        "Deployable on-premise",
-        "Deployable on cloud",
-        "Designed for future machine learning integration",
-        "Modular and extensible architecture for future features",
-        "Responsive UI"
+        "Real-time changes",
+        "Fast performance",
+        "Cloud deployment and Local deployment  "
       ]
     },
     "solution": "I built an Attendance Monitoring System that automates the logging by simply tapping the RFID and Verification through facial recognition to prevent proxy attendance and unauthorized check ins.",
@@ -166,35 +159,13 @@
     ],
     "technical_decisions": [
       {
-        "title": "Direct-to-Object-Storage Uploads",
-        "challenge": "Uploading large documents through the backend would consume API worker resources and increase response times.",
-        "decision": "Implemented direct browser uploads using pre-signed URLs so files are uploaded directly to MinIO. The backend only generates the upload URL and records metadata after the upload completes.",
+        "title": "Nextjs as Full Stack",
+        "challenge": "Fast , production-ready framework with modern UI",
+        "decision": "Built the system with Nextjs as Fullstack",
         "outcome": [
-          "Reduced backend bandwidth usage",
-          "Improved upload throughput",
-          "API remains responsive during uploads"
-        ]
-      },
-      {
-        "title": "Asynchronous Processing",
-        "challenge": "OCR and document indexing are CPU-intensive operations that can take several seconds or longer.",
-        "decision": "These tasks are executed by Celery workers after the upload has completed.",
-        "outcome": [
-          "Upload requests return immediately",
-          "Users can continue browsing the application",
-          "Long-running work doesn't block HTTP requests",
-          "Worker capacity can be scaled independently"
-        ]
-      },
-      {
-        "title": "Failure Recovery",
-        "challenge": "The system was originally intended for government use, where document loss and service interruptions are unacceptable. Network failures, worker crashes, or corrupted files should not prevent the application from continuing to operate or compromise uploaded documents.",
-        "decision": "Designed the upload pipeline around the principle that failures are inevitable. Documents are uploaded and persisted to object storage before any processing begins. Once the upload is confirmed, the backend creates a processing job for background workers. OCR, indexing, and other long-running tasks execute independently of the request lifecycle, allowing failures to be retried without affecting user-facing operations.",
-        "outcome": [
-          "Upload failures do not crash the backend",
-          "Users can continue using the application while documents are processed",
-          "Recoverable failures are handled automatically",
-          "The ingestion pipeline is resilient to temporary service interruptions"
+          "Fast development",
+          "Robust and Fast",
+          "Modern and responsive UI"
         ]
       }
     ],
